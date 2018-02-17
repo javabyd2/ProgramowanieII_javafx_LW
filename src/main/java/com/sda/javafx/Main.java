@@ -21,10 +21,14 @@ public class Main extends Application {
     private ObservableList<Person> personObservableList = FXCollections.observableArrayList();
 
     public Main(){
-        personObservableList.add(new Person("Jan", "Kowalski"));
-        personObservableList.add(new Person("Jan", "Kowalski"));
-        personObservableList.add(new Person("Jan", "Kowalski"));
-        personObservableList.add(new Person("Jan", "Kowalski"));
+        personObservableList.add(new Person("Marcin", "Kowalski","87-796","Bydgoszcz",
+                "02.03.1997","Fordonska"));
+        personObservableList.add(new Person("Jan", "Nowak","95-796","Warszawa",
+                "02.03.1970","Lecha"));
+        personObservableList.add(new Person("Janusz", "Chlebowski","50-796","Wroclaw",
+                "04.05.1990","Warszawska"));
+        personObservableList.add(new Person("Karol", "Podloga","10-796","Bydgoszcz",
+                "02.03.1950","Bydgoska"));
     }
 
     public ObservableList<Person> getPerson() {
@@ -44,6 +48,7 @@ public class Main extends Application {
         Scene scene = new Scene(rootLayout);
         primaryStage.setScene(scene);
         primaryStage.show();
+        primaryStage.setMinHeight(463);
     }
     public void showPersonLayout() throws IOException {
         FXMLLoader loader = new FXMLLoader((getClass().getClassLoader()

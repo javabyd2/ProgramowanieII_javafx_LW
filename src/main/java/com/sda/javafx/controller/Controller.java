@@ -7,6 +7,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
+import javax.swing.event.ChangeListener;
+
 public class Controller {
     @FXML
     private TableView<Person> personTableView;
@@ -31,7 +33,30 @@ public class Controller {
     private Label birthdayLabel;
 
     public Controller(){
+    }
 
+    @FXML
+    private void initialize(){
+        firstnameColumn.setCellValueFactory(data -> data.getValue().firstnameProperty());
+        lastnameColumn.setCellValueFactory(data -> data.getValue().lastnameProperty());
+        cityLabel.setLabelFor(cityLabel);
+        streetLabel.setLabelFor(streetLabel);
+        postalCodeLabel.setLabelFor(postalCodeLabel);
+        birthdayLabel.setLabelFor(birthdayLabel);
+
+        personTableView.getSelectionModel().selectedItemProperty().addListener((observable, x, y )-> showPerson(y));
+
+    }
+
+    public void showPerson(Person person){
+        firstNameLabel.setText(person.getFirstname());
+        lastNameLabel.setText(person.getLastname());
+        cityLabel.setText(person.getCity());
+        streetLabel.setText(person.getStreet());
+        postalCodeLabel.setText(person.getPostalcode());
+        birthdayLabel.setText(person.getBirthday());
+        System.out.println(person.getFirstname() + " " + person.getLastname());
+        System.out.println("KLIKAM!");
     }
 
     private Main main;

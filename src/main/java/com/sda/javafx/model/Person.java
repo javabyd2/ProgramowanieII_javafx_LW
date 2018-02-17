@@ -11,9 +11,13 @@ public class Person {
     private StringProperty birthday;
     private StringProperty street;
 
-    public Person(String firstname, String lastname) {
+    public Person(String firstname, String lastname, String postalcode, String city, String birthday, String street) {
         this.firstname = new SimpleStringProperty(firstname);
         this.lastname = new SimpleStringProperty(lastname);
+        this.postalcode = new SimpleStringProperty(postalcode);
+        this.city = new SimpleStringProperty(city);
+        this.birthday = new SimpleStringProperty(birthday);
+        this.street = new SimpleStringProperty(street);
     }
 
     public String getFirstname() {

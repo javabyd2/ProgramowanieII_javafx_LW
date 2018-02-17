@@ -48,8 +48,8 @@
                             <children>
                                 <Label text="Imie" />
                                 <Label text="Nazwisko" GridPane.rowIndex="1" />
-                                <Label text="Ulica" GridPane.rowIndex="2" />
-                                <Label text="Miasto" GridPane.rowIndex="3" />
+                                <Label text="Miasto" GridPane.rowIndex="2" />
+                                <Label text="Ulica" GridPane.rowIndex="3" />
                                 <Label text="Kod pocztowy" GridPane.rowIndex="4" />
                                 <Label text="Data urodzenia" GridPane.rowIndex="5" />
                                 <Label fx:id="firstNameLabel" text="Label" GridPane.columnIndex="1" />
