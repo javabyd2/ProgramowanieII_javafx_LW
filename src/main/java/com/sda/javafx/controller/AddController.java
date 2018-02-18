@@ -2,11 +2,10 @@ package com.sda.javafx.controller;
 
 import com.sda.javafx.Main;
 import com.sda.javafx.model.Person;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 public class AddController {
 
@@ -25,24 +24,33 @@ public class AddController {
     @FXML
     private TextField birthdayText;
 
-    public AddController(){
+    @FXML
+    public Button closeButton;
+
+    public AddController() {
     }
 
     private Main main;
 
-    public void setMain(Main main){
+    public void setMain(Main main) {
         this.main = main;
     }
 
     @FXML
-    private void addPerson(){
+    private void addPerson() {
 
         main.getPerson().add(new Person(firstNameText.getText(),
-        lastNameText.getText(),
-        streetText.getText(),
-        postalCodeText.getText(),
-        cityText.getText(),
-        birthdayText.getText()));
-
+                lastNameText.getText(),
+                streetText.getText(),
+                postalCodeText.getText(),
+                cityText.getText(),
+                birthdayText.getText()));
+        Stage stage = (Stage) closeButton.getScene().getWindow();
+        stage.close();
+    }
+    @FXML
+    public void handleCloseButtonAction(ActionEvent event) {
+        Stage stage = (Stage) closeButton.getScene().getWindow();
+        stage.close();
     }
 }

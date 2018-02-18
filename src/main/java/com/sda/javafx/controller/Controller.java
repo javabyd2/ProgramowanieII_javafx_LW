@@ -2,11 +2,16 @@ package com.sda.javafx.controller;
 
 import com.sda.javafx.Main;
 import com.sda.javafx.model.Person;
+import javafx.beans.property.StringProperty;
+import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseDragEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -37,6 +42,8 @@ public class Controller {
     @FXML
     private Label birthdayLabel;
 
+    @FXML
+    private Button editButton;
 
 
     public Controller(){
@@ -50,11 +57,12 @@ public class Controller {
 
         if(index >=0) {
 
-            personTableView.getItems().remove(index);
+            //personTableView.getItems().remove(index);
+            Person g = personTableView.getItems().remove(index);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Usunieto!");
             alert.setHeaderText("Usunales osobe z listy");
-            alert.setContentText("Osoba usunieta to: " );
+            alert.setContentText("Osoba usunieta to: " + g.getFirstname() + " " + g.getLastname());
             alert.showAndWait();
         }else{
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -81,19 +89,37 @@ public class Controller {
     }
 
 //    public void editPerson(ActionEvent actionEvent) throws IOException{
+//        int index = personTableView.getSelectionModel().getSelectedIndex();
 //
-//        FXMLLoader addPersonLayout = new  FXMLLoader(getClass().getClassLoader().getResource("AddPerson.fxml"));
-//
-//        AnchorPane addPersonLayou = addPersonLayout.load();
-//
-//        AddController addController = addPersonLayout.getController();
-//        addController.setMain(main);
-//        Stage stage = new Stage();
-//        Scene scene = new Scene(addPersonLayou);
-//
-//        stage.setScene(scene);
-//        stage.show();
+//        if(index >=0) {
+//            personTableView.getItems().remove(index);
+//        }else{
+//            Alert alert = new Alert(Alert.AlertType.WARNING);
+//        }
+//        addPerson(actionEvent);
 //    }
+
+    public void editPerson(ActionEvent actionEvent) throws IOException{
+
+        int index = personTableView.getSelectionModel().getSelectedIndex();
+
+
+
+        FXMLLoader addPersonLayout = new  FXMLLoader(getClass().getClassLoader().getResource("AddPerson.fxml"));
+
+        AnchorPane addPersonLayou = addPersonLayout.load();
+
+        AddController addController = addPersonLayout.getController();
+        addController.setMain(main);
+
+        Stage stage = new Stage();
+        Scene scene = new Scene(addPersonLayou);
+
+        stage.setScene(scene);
+        stage.show();
+
+
+    }
 
 
     @FXML
@@ -106,6 +132,7 @@ public class Controller {
         birthdayLabel.setLabelFor(birthdayLabel);
 
         personTableView.getSelectionModel().selectedItemProperty().addListener((observable, x, y )-> showPerson(y));
+
 
     }
 
@@ -130,4 +157,5 @@ public class Controller {
     public Controller(Main main) {
         this.main = main;
     }
+
 }
