@@ -1,6 +1,7 @@
 package com.sda.javafx;
 
 import com.sda.javafx.controller.Controller;
+import com.sda.javafx.model.AddPerson;
 import com.sda.javafx.model.Person;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -19,6 +20,7 @@ public class Main extends Application {
     private Stage primaryStage;
     private BorderPane rootLayout;
     private ObservableList<Person> personObservableList = FXCollections.observableArrayList();
+    AddPerson addPerson;
 
     public Main(){
         personObservableList.add(new Person("Marcin", "Kowalski","87-796","Bydgoszcz",
@@ -29,6 +31,7 @@ public class Main extends Application {
                 "04.05.1990","Warszawska"));
         personObservableList.add(new Person("Karol", "Podloga","10-796","Bydgoszcz",
                 "02.03.1950","Bydgoska"));
+        //personObservableList.add(new Person(addPerson.FirstNameText.getText(),addPerson.lastNameText.getText(),addPerson.postalCodeText.getText(),addPerson.cityText.getText(),baddPerson.irthdayText.getText(),addPerson.streetText.getText()));
     }
 
     public ObservableList<Person> getPerson() {
@@ -42,6 +45,7 @@ public class Main extends Application {
         showPersonLayout();
     }
 
+
     public void initRootLayout() throws IOException{
         rootLayout = FXMLLoader.load(getClass().getClassLoader()
                 .getResource("RootLayout.fxml"));
@@ -49,6 +53,7 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
         primaryStage.setMinHeight(463);
+        primaryStage.setMinWidth(625);
     }
     public void showPersonLayout() throws IOException {
         FXMLLoader loader = new FXMLLoader((getClass().getClassLoader()

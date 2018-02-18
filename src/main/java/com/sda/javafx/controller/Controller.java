@@ -2,12 +2,17 @@ package com.sda.javafx.controller;
 
 import com.sda.javafx.Main;
 import com.sda.javafx.model.Person;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
-import javax.swing.event.ChangeListener;
+
+
+import java.io.IOException;
 
 public class Controller {
     @FXML
@@ -32,8 +37,64 @@ public class Controller {
     @FXML
     private Label birthdayLabel;
 
+
+
     public Controller(){
     }
+
+
+
+    @FXML
+    private void deletePerson(){
+        int index = personTableView.getSelectionModel().getSelectedIndex();
+
+        if(index >=0) {
+
+            personTableView.getItems().remove(index);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Usunieto!");
+            alert.setHeaderText("Usunales osobe z listy");
+            alert.setContentText("Osoba usunieta to: " );
+            alert.showAndWait();
+        }else{
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Blad");
+            alert.setHeaderText("To jest error");
+            alert.setContentText("Nie mozna usunac");
+            alert.showAndWait();
+        }
+    }
+
+    public void addPerson(ActionEvent actionEvent) throws IOException{
+
+        FXMLLoader addPersonLayout = new  FXMLLoader(getClass().getClassLoader().getResource("AddPerson.fxml"));
+
+        AnchorPane addPersonLayou = addPersonLayout.load();
+
+        AddController addController = addPersonLayout.getController();
+        addController.setMain(main);
+        Stage stage = new Stage();
+        Scene scene = new Scene(addPersonLayou);
+
+        stage.setScene(scene);
+        stage.show();
+    }
+
+//    public void editPerson(ActionEvent actionEvent) throws IOException{
+//
+//        FXMLLoader addPersonLayout = new  FXMLLoader(getClass().getClassLoader().getResource("AddPerson.fxml"));
+//
+//        AnchorPane addPersonLayou = addPersonLayout.load();
+//
+//        AddController addController = addPersonLayout.getController();
+//        addController.setMain(main);
+//        Stage stage = new Stage();
+//        Scene scene = new Scene(addPersonLayou);
+//
+//        stage.setScene(scene);
+//        stage.show();
+//    }
+
 
     @FXML
     private void initialize(){
